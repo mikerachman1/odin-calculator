@@ -102,4 +102,5 @@ decimal.addEventListener('click', function() {
 
 clear.addEventListener('click', function() {
     display.textContent = '';
+    displayValue = 0;
 })
