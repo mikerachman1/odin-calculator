@@ -21,3 +21,18 @@ const divide = (...args) => {
         return acc / cur;
     })
 }
+
+const operate = (operator, a, b) => {
+    if (operator === '+') {
+        return add(a, b);
+    }
+    if (operator === '-') {
+        return subtract(a, b);
+    }
+    if (operator === '*') {
+        return multiply(a, b);
+    }
+    if (operator === '/') {
+        return divide(a, b);
+    }
+}
