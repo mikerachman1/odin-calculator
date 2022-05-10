@@ -1,43 +1,33 @@
-const add = (...args) => {
-    return args.reduce((acc, cur) => {
-        return acc + cur;
-    })
-};
-
-const subtract = (...args) => {
-    return args.reduce((acc, cur) => {
-        return acc - cur;
-    })
-};
-
-const multiply = (...args) => {
-    return args.reduce((acc, cur) => {
-        return acc * cur;
-    })
-};
-
-const divide = (...args) => {
-    return args.reduce((acc, cur) => {
-        return acc / cur;
-    })
-}
-
-const operate = (oper, a, b) => {
-    switch(oper) {
+const operate = (...args) => {
+    switch(args[0]) {
         case '+':
-            return add(a,b);
+            args.shift();
+            return args.reduce((acc, cur) => {
+              return acc + cur;
+              })
             break;
         case '-':
-            return subtract(a,b);
+            args.shift();
+            return args.reduce((acc, cur) => {
+              let result = acc - cur;
+              return result;
+              })
             break;
         case '*':
-            return multiply(a,b);
+            args.shift();
+            return args.reduce((acc, cur) => {
+              return acc * cur;
+              })
             break;
         case '/':
-            return divide(a,b);
+            args.shift();
+            return args.reduce((acc, cur) => {
+              return acc / cur;
+              })
             break;
     }
 }
+
 let displayValue = 0;
 let firstNum = 0;
 let secondNum = 0;
