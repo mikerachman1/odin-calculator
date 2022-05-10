@@ -22,8 +22,8 @@ const divide = (...args) => {
     })
 }
 
-const operate = (operator, a, b) => {
-    switch(operator) {
+const operate = (oper, a, b) => {
+    switch(oper) {
         case '+':
             return add(a,b);
             break;
@@ -39,7 +39,10 @@ const operate = (operator, a, b) => {
     }
 }
 let displayValue = 0;
-
+let firstNum = 0;
+let secondNum = 0;
+let operator = '';
+//num button declarations
 const display = document.querySelector('#display');
 const one = document.querySelector('#one');
 const two = document.querySelector('#two');
@@ -52,9 +55,14 @@ const eight = document.querySelector('#eight');
 const nine = document.querySelector('#nine');
 const zero = document.querySelector('#zero');
 const decimal = document.querySelector('#decimal');
-
+//operator button declarations
 const clear = document.querySelector('#clear')
-
+const addBtn = document.getElementById('add')
+const subtractBtn = document.getElementById('subtract')
+const multiplyBtn = document.getElementById('multiply')
+const divideBtn = document.getElementById('divide')
+const equalsBtn = document.getElementById('equals')
+//number button event listeners
 one.addEventListener('click', function() {
     display.textContent += 1;
     displayValue = display.textContent;
@@ -100,7 +108,39 @@ decimal.addEventListener('click', function() {
     displayValue = display.textContent;
 })
 
+//operator button event listeners
 clear.addEventListener('click', function() {
     display.textContent = '';
     displayValue = 0;
+})
+
+addBtn.addEventListener('click', function() {
+    firstNum = displayValue;
+    operator = '+';
+    display.textContent = '';
+    displayValue = 0;
+})
+subtractBtn.addEventListener('click', function() {
+    firstNum = displayValue;
+    operator = '-';
+    display.textContent = '';
+    displayValue = 0;
+})
+multiplyBtn.addEventListener('click', function() {
+    firstNum = displayValue;
+    operator = '*';
+    display.textContent = '';
+    displayValue = 0;
+})
+divideBtn.addEventListener('click', function() {
+    firstNum = displayValue;
+    operator = '/';
+    display.textContent = '';
+    displayValue = 0;
+})
+
+equalsBtn.addEventListener('click', function() {
+    secondNum = displayValue;
+    let result = operate(operator, parseInt(firstNum), parseInt(secondNum));
+    display.textContent = result;
 })
