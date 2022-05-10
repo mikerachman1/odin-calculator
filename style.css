@@ -21,6 +21,7 @@ h1 {
 #display {
     background-color: lightgoldenrodyellow;
     border: 2px solid black;
+    height: 18px;
 }
 
 #buttons {
