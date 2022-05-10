@@ -23,16 +23,18 @@ const divide = (...args) => {
 }
 
 const operate = (operator, a, b) => {
-    if (operator === '+') {
-        return add(a, b);
-    }
-    if (operator === '-') {
-        return subtract(a, b);
-    }
-    if (operator === '*') {
-        return multiply(a, b);
-    }
-    if (operator === '/') {
-        return divide(a, b);
+    switch(operator) {
+        case '+':
+            return add(a,b);
+            break;
+        case '-':
+            return subtract(a,b);
+            break;
+        case '*':
+            return multiply(a,b);
+            break;
+        case '/':
+            return divide(a,b);
+            break;
     }
 }

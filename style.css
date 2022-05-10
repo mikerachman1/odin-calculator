@@ -1,3 +1,38 @@
 * {
     background-color: grey;
 }
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#calc-container {
+    text-align: center;
+}
+
+#calculator {
+    border: 5px solid black;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+#display {
+    background-color: lightgoldenrodyellow;
+    border: 2px solid black;
+}
+
+#buttons {
+    display: flex;
+}
+
+#operators {
+    display: flex;
+    flex-direction: column;
+}
+
+#nums {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+}
