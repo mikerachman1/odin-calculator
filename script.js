@@ -1,28 +1,16 @@
 const operate = (array) => {
     switch(array[0]) {
         case '+':
-            array.shift();
-            return array.reduce((acc, cur) => {
-              return parseInt(acc) + parseInt(cur);
-              })
+            return Number(array[1]) + Number(array[2]);
             break;
         case '-':
-            array.shift();
-            return array.reduce((acc, cur) => {
-              return acc - cur;
-              })
+            return array[1] - array[2];
             break;
         case '*':
-            array.shift();
-            return array.reduce((acc, cur) => {
-              return acc * cur;
-              })
+            return array[1] * array[2];
             break;
         case '/':
-            array.shift();
-            return array.reduce((acc, cur) => {
-              return acc / cur;
-              })
+            return array[1] / array[2];
             break;
     }
 }
@@ -103,12 +91,21 @@ clear.addEventListener('click', function() {
 //empty array for filling with numbers and operators 
 let arguments = [];
 
-//do this for the rest of functions
+
+//operator event functions
 const add = () => {
-    arguments[0] = '+';
-    arguments[1] = displayValue;
-    display.textContent = '';
-    displayValue = 0;
+    if (arguments.length === 2) {
+        arguments[2] = displayValue;
+        let results = operate(arguments);
+        displayValue = results;
+        display.textContent = results;
+        arguments = ['', results]
+    } else {
+        arguments[0] = '+';
+        arguments[1] = displayValue;
+        display.textContent = '';
+        displayValue = 0;
+    }
 };
 
 const subtract = () => {
