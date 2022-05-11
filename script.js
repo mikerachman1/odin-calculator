@@ -1,27 +1,26 @@
-const operate = (...args) => {
-    switch(args[0]) {
+const operate = (array) => {
+    switch(array[0]) {
         case '+':
-            args.shift();
-            return args.reduce((acc, cur) => {
-              return acc + cur;
+            array.shift();
+            return array.reduce((acc, cur) => {
+              return parseInt(acc) + parseInt(cur);
               })
             break;
         case '-':
-            args.shift();
-            return args.reduce((acc, cur) => {
-              let result = acc - cur;
-              return result;
+            array.shift();
+            return array.reduce((acc, cur) => {
+              return acc - cur;
               })
             break;
         case '*':
-            args.shift();
-            return args.reduce((acc, cur) => {
+            array.shift();
+            return array.reduce((acc, cur) => {
               return acc * cur;
               })
             break;
         case '/':
-            args.shift();
-            return args.reduce((acc, cur) => {
+            array.shift();
+            return array.reduce((acc, cur) => {
               return acc / cur;
               })
             break;
@@ -29,9 +28,7 @@ const operate = (...args) => {
 }
 
 let displayValue = 0;
-let firstNum = 0;
-let secondNum = 0;
-let operator = '';
+
 //num button declarations
 const display = document.querySelector('#display');
 const one = document.querySelector('#one');
@@ -98,39 +95,54 @@ decimal.addEventListener('click', function() {
     displayValue = display.textContent;
 })
 
-//operator button event listeners
+//clear button event listeners
 clear.addEventListener('click', function() {
     display.textContent = '';
     displayValue = 0;
 })
+//empty array for filling with numbers and operators 
+let arguments = [];
 
-addBtn.addEventListener('click', function() {
-    firstNum = displayValue;
-    operator = '+';
+//do this for the rest of functions
+const add = () => {
+    arguments[0] = '+';
+    arguments[1] = displayValue;
     display.textContent = '';
     displayValue = 0;
-})
-subtractBtn.addEventListener('click', function() {
-    firstNum = displayValue;
-    operator = '-';
-    display.textContent = '';
-    displayValue = 0;
-})
-multiplyBtn.addEventListener('click', function() {
-    firstNum = displayValue;
-    operator = '*';
-    display.textContent = '';
-    displayValue = 0;
-})
-divideBtn.addEventListener('click', function() {
-    firstNum = displayValue;
-    operator = '/';
-    display.textContent = '';
-    displayValue = 0;
-})
+};
 
-equalsBtn.addEventListener('click', function() {
-    secondNum = displayValue;
-    let result = operate(operator, parseInt(firstNum), parseInt(secondNum));
-    display.textContent = result;
-})
+const subtract = () => {
+    arguments[0] = '-';
+    arguments[1] = displayValue;
+    display.textContent = '';
+    displayValue = 0;
+}
+
+const multiply = () => {
+    arguments[0] = '*';
+    arguments[1] = displayValue;
+    display.textContent = '';
+    displayValue = 0;
+}
+
+const divide = () => {
+    arguments[0] = '/';
+    arguments[1] = displayValue;
+    display.textContent = '';
+    displayValue = 0;
+}
+
+const equals = () => {
+    arguments[2] = displayValue;
+    let results = operate(arguments);
+    displayValue = results;
+    display.textContent = results;
+}
+//operator button event listeners
+addBtn.addEventListener('click', add);
+subtractBtn.addEventListener('click', subtract);
+multiplyBtn.addEventListener('click', multiply)
+divideBtn.addEventListener('click', divide)
+
+equalsBtn.addEventListener('click', equals)
+
