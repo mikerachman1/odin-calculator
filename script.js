@@ -17,12 +17,12 @@ const display = document.querySelector('#display');
 const nums = document.querySelectorAll('.num');
 nums.forEach(num => {
     num.addEventListener('click', () => {
-        if (displayValue === 0) {
+        if (displayValue === 0 || displayValue === '0') {
             display.textContent = num.textContent
         } else {
             display.textContent += num.textContent
         }
-        displayValue = display.textContent
+        displayValue = parseFloat(display.textContent)
     })
 })
 
@@ -56,27 +56,80 @@ const operators = document.querySelectorAll('.operator');
 operators.forEach(op => {
     op.addEventListener('click', () => {
         if (firstNum === null && secondNum === null) {
-            firstNum = display.textContent;
+            //if starting fresh
+            firstNum = displayValue;
             operator = op.textContent;
             displayValue = 0;
-        } else if (firstNum !== null){
-            secondNum = display.textContent;
+            console.log(firstNum)
+            console.log(secondNum)
+            console.log(operator)
+            console.log(displayValue)
+            console.log('end')
+        } else if (firstNum !== null && secondNum === null){
+            //if first num has been entered and operator selected
+            secondNum = displayValue;
             operator = op.textContent
             let result = operate(firstNum, operator, secondNum);
             display.textContent = result;
             displayValue = 0;
             firstNum = result;
+            console.log(firstNum)
+            console.log(secondNum)
+            console.log(operator)
+            console.log(displayValue)
+            console.log('end')
+        } else if (firstNum === null && secondNum !==null) {
+            //if operation has already happened
+            firstNum = secondNum;
+            secondNum = null;
+            operator = op.textContent;
+            console.log(firstNum)
+            console.log(secondNum)
+            console.log(operator)
+            console.log(displayValue)
+            console.log('end')
+        } else if (firstNum !== null && secondNum !== null) {
+            secondNum = displayValue;
+            operator = op.textContent
+            let result = operate(firstNum, operator, secondNum);
+            display.textContent = result;
+            displayValue = 0;
+            firstNum = result;
+            console.log(firstNum)
+            console.log(secondNum)
+            console.log(operator)
+            console.log(displayValue)
+            console.log('end')
         }
     })
 })
 //equals button event listener
 const equalsBtn = document.getElementById('equals')
 equalsBtn.addEventListener('click', () => {
-    secondNum = displayValue;
-    let result = operate(firstNum, operator, secondNum);
-    display.textContent = result;
-    displayValue = 0;
-    firstNum = null;
-    secondNum = result;
+    if (secondNum === null) {
+        secondNum = displayValue;
+        let result = operate(firstNum, operator, secondNum);
+        display.textContent = result;
+        displayValue = 0;
+        firstNum = null; //this is problem
+        secondNum = result;
+        console.log(firstNum)
+        console.log(secondNum)
+        console.log(operator)
+        console.log(displayValue)
+        console.log('end')
+    } else {
+        firstNum = displayValue;
+        let result = operate(firstNum, operator, secondNum);
+        display.textContent = result;
+        displayValue = 0;
+        firstNum = null;
+        secondNum = result;
+        console.log(firstNum)
+        console.log(secondNum)
+        console.log(operator)
+        console.log(displayValue)
+        console.log('end')
+    }
 })
 
