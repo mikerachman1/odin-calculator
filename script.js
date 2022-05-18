@@ -20,8 +20,19 @@ const display = document.querySelector('#display');
 const nums = document.querySelectorAll('.num');
 nums.forEach(num => {
     num.addEventListener('click', () => {
+        
         if (displayValue === 0 || displayValue === '0') {
             display.textContent = num.textContent
+            if (num.textContent === '.') {
+                if (!display.textContent.includes('.')) {
+                    display.textContent += '.';
+                    displayValue = display.textContent;
+                    return;
+                } else {
+                    displayValue = display.textContent;
+                    return;
+                }
+            }
         } else {
             display.textContent += num.textContent
         }
@@ -36,19 +47,6 @@ const subtractBtn = document.getElementById('subtract')
 const multiplyBtn = document.getElementById('multiply')
 const divideBtn = document.getElementById('divide')
 
-
-
-//decimal event listener
-const decimal = document.querySelector('#decimal');
-decimal.addEventListener('click', function() {
-    if (!display.textContent.includes('.')) {
-        display.textContent += '.';
-        displayValue = display.textContent;
-    } else {
-        displayValue = display.textContent;
-    }
-   
-})
 
 //clear button event listeners
 const clear = document.querySelector('#clear')
@@ -135,91 +133,3 @@ equalsBtn.addEventListener('click', () => {
         console.log(`secondOperator: ${secondOperator}`)
     }
 })
-
-
-// const operators = document.querySelectorAll('.operator');
-// operators.forEach(op => {
-//     op.addEventListener('click', () => {
-//         if (firstNum === null && secondNum === null) {
-//             //if starting fresh
-//             firstNum = displayValue;
-//             firstOperator = op.textContent;
-//             displayValue = 0;
-//             console.log(firstNum)
-//             console.log(secondNum)
-//             console.log(firstOperator)
-//             console.log(secondOperator)
-//             console.log(displayValue)
-//             console.log('end')
-//         } else if (firstNum !== null && secondNum === null){
-//             //if first num has been entered and operator selected
-//             secondNum = displayValue;
-//             firstOperator = op.textContent
-//             let result = operate(firstNum, firstOperator, secondNum);
-//             display.textContent = result;
-//             displayValue = 0;
-//             firstNum = result;
-//             console.log(firstNum)
-//             console.log(secondNum)
-//             console.log(firstOperator)
-//             console.log(secondOperator)
-//             console.log(displayValue)
-//             console.log('end')
-//         } else if (firstNum === null && secondNum !==null) {
-//             //if operation has already happened
-//             firstNum = secondNum;
-//             secondNum = null;
-//             firstOperator = op.textContent;
-//             console.log(firstNum)
-//             console.log(secondNum)
-//             console.log(firstOperator)
-//             console.log(secondOperator)
-//             console.log(displayValue)
-//             console.log('end')
-//         } else if (firstNum !== null && secondNum !== null) {
-//             secondNum = displayValue;
-//             firstOperator = op.textContent
-//             let result = operate(firstNum, firstOperator, secondNum);
-//             display.textContent = result;
-//             displayValue = 0;
-//             firstNum = result;
-//             console.log(firstNum)
-//             console.log(secondNum)
-//             console.log(firstOperator)
-//             console.log(secondOperator)
-//             console.log(displayValue)
-//             console.log('end')
-//         }
-//     })
-// })
-// //equals button event listener
-// const equalsBtn = document.getElementById('equals')
-// equalsBtn.addEventListener('click', () => {
-//     if (secondNum === null) {
-//         secondNum = displayValue;
-//         let result = operate(firstNum, firstOperator, secondNum);
-//         display.textContent = result;
-//         displayValue = 0;
-//         firstNum = null; //this is problem
-//         secondNum = result;
-//         console.log(firstNum)
-//         console.log(secondNum)
-//         console.log(firstOperator)
-//         console.log(secondOperator)
-//         console.log(displayValue)
-//         console.log('end')
-//     } else {
-//         firstNum = displayValue;
-//         let result = operate(firstNum, firstOperator, secondNum);
-//         display.textContent = result;
-//         displayValue = 0;
-//         firstNum = null;
-//         secondNum = result;
-//         console.log(firstNum)
-//         console.log(secondNum)
-//         console.log(firstOperator)
-//         console.log(secondOperator)
-//         console.log(displayValue)
-//         console.log('end')
-//     }
-// })
